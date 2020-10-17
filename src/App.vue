@@ -56,6 +56,8 @@
 import DataList from "./components/DataList";
 import AddItem from "./components/AddItem";
 
+import { globalBus } from "./main";
+
 export default {
   name: "App",
 
@@ -91,6 +93,24 @@ export default {
     sourceItems() {
       return this.sources.map((s, i) => ({ name: s.name, index: i }));
     },
+  },
+
+  created() {
+    globalBus.$on(
+      "add-item",
+      (item) =>
+        (this.sources[this.currentSource].data = [
+          ...this.sources[this.currentSource].data,
+          item,
+        ])
+    );
+    globalBus.$on(
+      "delete-item",
+      (idx) =>
+        (this.sources[this.currentSource].data = this.sources[
+          this.currentSource
+        ].data.filter((item, i) => idx !== i))
+    );
   },
 };
 </script>

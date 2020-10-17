@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { globalBus } from "../main";
+
 export default {
   name: "AddItem",
 
@@ -25,7 +27,10 @@ export default {
 
   methods: {
     addItem() {
-      console.log("Add item called ");
+      if (this.newItem !== "") {
+        globalBus.$emit("add-item", this.newItem);
+        this.newItem = "";
+      }
     },
   },
 };

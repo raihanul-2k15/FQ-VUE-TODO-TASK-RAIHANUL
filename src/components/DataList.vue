@@ -18,12 +18,14 @@
 </template>
 
 <script>
+import { globalBus } from "../main";
+
 export default {
   name: "DataList",
   data: () => ({}),
   methods: {
     deleteItem(i) {
-      console.log("Del item called with " + i);
+      globalBus.$emit("delete-item", i);
     },
   },
   props: {
