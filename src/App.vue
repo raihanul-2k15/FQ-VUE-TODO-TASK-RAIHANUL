@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -24,24 +20,57 @@
           width="100"
         />
       </div>
-
     </v-app-bar>
 
     <v-main>
+      <v-container>
+        <v-row justify="center">
+          <v-col sm="12" md="6">
+            <h2>Dynamic App</h2>
+            <v-select
+              v-model="currentSource"
+              :items="sources"
+              item-text="name"
+              item-value="id"
+              label="Data Source"
+              single-line
+            ></v-select>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
+  name: "App",
 
-  components: {
-  },
+  components: {},
 
   data: () => ({
-    //
+    sources: [
+      {
+        id: 0,
+        name: "To-Do List",
+        editable: true,
+        data: [],
+      },
+      {
+        id: 1,
+        name: "Dummy Data",
+        editable: false,
+        data: [
+          "Just some dummy data",
+          "Some big text to display. Wooo!",
+          "Well, it's a small one",
+          "Another small",
+        ],
+      },
+    ],
+    currentSource: 0,
   }),
+
+  computed: () => ({}),
 };
 </script>
