@@ -85,6 +85,12 @@ export default {
           "Another small",
         ],
       },
+      {
+        id: 2,
+        name: "More Dummy Data",
+        editable: false,
+        data: ["Keyboard", "Mouse!", "Monitor", "CPU", "GPU", "Laptop"],
+      },
     ],
     currentSource: 0,
   }),
