@@ -1,24 +1,8 @@
-# fq-todo
+# fq-vue-todo-task
 
-## Project setup
-```
-npm install
-```
+Small Vue project where I explored the Vue library and implemented a sample todo list app with local storage persistence.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Live Preview
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Should be available at:
+[https://raihanul-2k15.github.io/FQ-VUE-TODO-TASK-RAIHANUL/](https://raihanul-2k15.github.io/FQ-VUE-TODO-TASK-RAIHANUL/)
