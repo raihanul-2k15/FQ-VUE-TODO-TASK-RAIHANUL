@@ -72,7 +72,7 @@ export default {
         id: 0,
         name: "To-Do List",
         editable: true,
-        data: ["A", "B", "C"],
+        data: ["Learn Vue", "Complete Task", "Submit Task"],
       },
       {
         id: 1,
@@ -89,6 +89,24 @@ export default {
     currentSource: 0,
   }),
 
+  methods: {
+    loadFromStorage() {
+      const storageItems = localStorage.getItem("todo-list");
+      try {
+        const parsedData = JSON.parse(storageItems);
+        if (!Array.isArray(parsedData)) {
+          throw "nope!";
+        }
+        this.sources[0].data = parsedData;
+      } catch (e) {
+        localStorage.removeItem("todo-list");
+      }
+    },
+    saveToStorage() {
+      localStorage.setItem("todo-list", JSON.stringify(this.sources[0].data));
+    },
+  },
+
   computed: {
     sourceItems() {
       return this.sources.map((s, i) => ({ name: s.name, index: i }));
@@ -96,21 +114,21 @@ export default {
   },
 
   created() {
-    globalBus.$on(
-      "add-item",
-      (item) =>
-        (this.sources[this.currentSource].data = [
-          ...this.sources[this.currentSource].data,
-          item,
-        ])
-    );
-    globalBus.$on(
-      "delete-item",
-      (idx) =>
-        (this.sources[this.currentSource].data = this.sources[
-          this.currentSource
-        ].data.filter((item, i) => idx !== i))
-    );
+    this.loadFromStorage();
+
+    globalBus.$on("add-item", (item) => {
+      this.sources[this.currentSource].data = [
+        ...this.sources[this.currentSource].data,
+        item,
+      ];
+      this.saveToStorage();
+    });
+    globalBus.$on("delete-item", (idx) => {
+      this.sources[this.currentSource].data = this.sources[
+        this.currentSource
+      ].data.filter((item, i) => idx !== i);
+      this.saveToStorage();
+    });
   },
 };
 </script>
