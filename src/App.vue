@@ -27,6 +27,10 @@
         <v-row justify="center">
           <v-col sm="12" md="6">
             <h2>Dynamic App</h2>
+            <small class="secondary--text"
+              >Note: I'm not very experienced with Vue or CSS. I'm a React
+              person :P so...</small
+            >
             <v-select
               v-model="currentSource"
               :items="sourceItems"
@@ -37,16 +41,24 @@
             ></v-select>
           </v-col>
         </v-row>
+        <data-list
+          :items="sources[currentSource].data"
+          :editable="sources[currentSource].editable"
+        ></data-list>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import DataList from "./components/DataList";
+
 export default {
   name: "App",
 
-  components: {},
+  components: {
+    "data-list": DataList,
+  },
 
   data: () => ({
     sources: [
