@@ -44,7 +44,9 @@
         <data-list
           :items="sources[currentSource].data"
           :editable="sources[currentSource].editable"
-        ></data-list>
+        >
+        </data-list>
+        <add-item v-if="sources[currentSource].editable"></add-item>
       </v-container>
     </v-main>
   </v-app>
@@ -52,12 +54,14 @@
 
 <script>
 import DataList from "./components/DataList";
+import AddItem from "./components/AddItem";
 
 export default {
   name: "App",
 
   components: {
     "data-list": DataList,
+    "add-item": AddItem,
   },
 
   data: () => ({
