@@ -29,9 +29,9 @@
             <h2>Dynamic App</h2>
             <v-select
               v-model="currentSource"
-              :items="sources"
+              :items="sourceItems"
               item-text="name"
-              item-value="id"
+              item-value="index"
               label="Data Source"
               single-line
             ></v-select>
@@ -54,7 +54,7 @@ export default {
         id: 0,
         name: "To-Do List",
         editable: true,
-        data: [],
+        data: ["A", "B", "C"],
       },
       {
         id: 1,
@@ -71,6 +71,10 @@ export default {
     currentSource: 0,
   }),
 
-  computed: () => ({}),
+  computed: {
+    sourceItems() {
+      return this.sources.map((s, i) => ({ name: s.name, index: i }));
+    },
+  },
 };
 </script>
